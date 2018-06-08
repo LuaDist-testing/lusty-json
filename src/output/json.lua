@@ -11,11 +11,23 @@ return {
       output = meta.__toView(output, context)
     end
 
-    context.response.send(json.encode(output))
+    local raw
+    if config.encodeEmptyTableAsArray and next(output) == nil then
+      raw = "[]"
+    else
+      raw = json.encode(output)
+    end
+
+    context.response.send(raw)
   end,
 
   options = {
     predicate = function(context)
+
+      if context.output == nil then
+        return false
+      end
+
       if config.default then
         return true
       end
@@ -23,7 +35,7 @@ return {
       local accept = context.request.headers.accept
       local content = context.request.headers["content-type"]
 
-      return (accept and (accept:find("application/json") or accept:find("*/*")) or
+      return (accept and (accept:find("application/json") or accept:find("*/*"))) or
              (content and content:find("application/json") and not accept)
     end
   }
