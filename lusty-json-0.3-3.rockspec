@@ -1,9 +1,17 @@
+-- This file was automatically generated for the LuaDist project.
+
 package = "lusty-json"
 version = "0.3-3"
+-- LuaDist source
 source = {
-  url = "https://github.com/Olivine-Labs/lusty-json/archive/v0.3.tar.gz",
-  dir = "lusty-json-0.3"
+  tag = "0.3-3",
+  url = "git://github.com/LuaDist-testing/lusty-json.git"
 }
+-- Original source
+-- source = {
+--   url = "https://github.com/Olivine-Labs/lusty-json/archive/v0.3.tar.gz",
+--   dir = "lusty-json-0.3"
+-- }
 description = {
   summary = "json input and output for lusty.",
   detailed = [[
